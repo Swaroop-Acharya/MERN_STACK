@@ -1,0 +1,17 @@
+Express:-
+
+const express=require('express')
+const app=express();
+const PORT=5000;
+app.get('/',(req,res)=>{
+    res.status(200).send("Welcome to swaroop store");
+})
+
+
+app.get('/registration',(req,res)=>{
+    res.status(200).send("Welcome to registration page of store");
+})
+
+app.listen(PORT,()=>{
+    console.log(`server is up and runinng at port:${PORT}`)
+})

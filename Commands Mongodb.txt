@@ -1,0 +1,275 @@
+MongoDb:-
+
+Installation:-
+
+install community version,shell,database tools
+
+
+Mongodb server ---> server engine--> database
+
+we have to start start the server in order to connect to the database;
+
+
+use CMD :-
+
+>mongosh
+
+>show dbs
+>use <db name>
+>show collections
+>db.createCollection('name')
+
+
+inserting:-
+>db.<Collection name>.insertOne({
+key:value,
+key:value
+
+})
+
+>db.<Collection name>.insertMany([{
+key:value,
+key:value
+
+},
+
+{
+key:value,
+key:value
+
+}
+])
+
+
+displaying the data in collections :-
+
+>db.<Collection name>.find()
+
+Orderd insert and unordereInsert:-
+
+Ordered insert:- Default behaviour is ordered, where mongodb stops on the first error
+Which means if there is an errror in the middle data previous data will be inserted .
+
+unordere insert :- all the non error data will be inserted.
+
+just set the flag ordered: false;
+
+example:-
+>db.<Collection name>.insertMany([{
+key:value,
+key:value
+
+},
+
+{
+key:value,
+key:value
+
+}
+],{ordered:false})
+
+Case sensitivity in mongodb:-
+collection name, field name are case sensitive.
+
+
+To limit the data output:-
+db.<Collection name>.find().limit(2)
+
+Read Operations in Mongodb:-
+Reading documents
+Comparison operators
+Logical operators
+cursors in mongodb
+Elements operators
+
+Finding Documents in Mongodb:-
+1)find()
+  db.collection_name.find({key:value})
+Example:- 
+>db.Teacher.find({'name':'Shanti'})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+
+2)findOne()
+ db.collection_name.findOne({key:value})
+Example:-
+> db.Teacher.findOne({'name':'Shanti'})
+{ _id: ObjectId('65f930007df780a4678bf202'), name: 'Shanti', age: 29 }
+
+
+Importing JSON in Mongodb:-
+
+commands:-
+
+mongoimport jsonfile.json -d <database_name> -c collection_name
+importing one document:-
+example:- mongoimport product.json -d shop -c products
+importing array of objects:-
+example mongoimport products.json -d shop -c products --jsonArray
+
+pass the flag --jsonArray
+
+Comparison operators:-
+$eq - equal to
+$ne - not equal to
+$gt - greater than 
+$gte - gratert than equal to
+$lt - less than
+$lte - less than equal
+$in - in
+$nin - not in
+
+Syntax :- db.collectin_name.find({'fieldname':{$operator:value}})
+example :- db.Product.find({'price':{$lte:8000}})
+example :- db.Product.find({'price':{$in:[8000,9000,100000]}})
+
+Example:-
+
+students> db.Teacher.find({'age':{$eq:29}})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+students> db.Teacher.find({'age':{$in:[29,19]}})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+
+
+students> db.Teacher.find({'age':{$in:[29,19]}}).count()
+2
+
+Cursons in db:-
+
+Cursons in mongodb are used to efficiently retrieve large result sets from queries, providing
+control over the data retrieval process
+
+mongodb retrieves query results in batches using cursor.
+
+cursors are a pointer to the result set on the server.
+
+cursors are used to iterate through query results.
+
+Automatic batching
+
+default batch size is 101 documents.
+
+Cursor methods:-
+
+count()
+limit()
+skip()
+sort()
+
+Count:-
+students> db.Teacher.find({'age':{$in:[29,19]}}).count()
+2
+
+Skip:-
+students> db.Teacher.find({'age':{$in:[29,19]}}).skip(1)
+[
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+
+Limit:-
+students> db.Teacher.find({'age':{$in:[29,19]}}).limit(1)
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+
+
+Sort:- 
+1 => accessnding
+-1=> descessnding
+students> db.Teacher.find().sort({'age':1})
+[
+  {
+    _id: ObjectId('65f930697df780a4678bf203'),
+    name: 'Swaroop',
+    age: 21
+  },
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+students> db.Teacher.find().sort({'age':-1})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf203'),
+    name: 'Swaroop',
+    age: 21
+  }
+]
+
+Logical operators :-
+
+$and
+$or
+$not
+$nor
+
+syntax
+
+{$and :[{condition1},{condition2},...]}
+{field:{$not:{operator:value}}}
+
+
+
+
+
+
+
+
+

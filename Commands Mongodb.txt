@@ -266,8 +266,73 @@ syntax
 {field:{$not:{operator:value}}}
 
 
+Example:-
+and:-
+students> db.Teacher.find({$and:[{name:'Shanti'},{'age':29}]})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+
+or:-
+students> db.Teacher.find({$or:[{name:'Shanti'},{'age':21}]})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf203'),
+    name: 'Swaroop',
+    age: 21
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
 
 
+Elements operator in mongo:-
+
+
+$exits :- field exists or not
+syntax :- {field:{$exists:<boolean>}}
+$type :- {field:{$type:<bson-data-type>}}
+$size :- {field:{$size:<array-length>}}
+
+example :- (Exists)
+students> db.Teacher.find({'age':{$exists:true}})
+[
+  {
+    _id: ObjectId('65f930007df780a4678bf202'),
+    name: 'Shanti',
+    age: 29
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf203'),
+    name: 'Swaroop',
+    age: 21
+  },
+  {
+    _id: ObjectId('65f930697df780a4678bf204'),
+    name: 'Shanti',
+    age: 29
+  }
+]
+
+
+Cluster is group of interconnected servers that work together to store and manage data.
 
 
 

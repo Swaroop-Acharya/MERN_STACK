@@ -15,3 +15,16 @@ app.get('/registration',(req,res)=>{
 app.listen(PORT,()=>{
     console.log(`server is up and runinng at port:${PORT}`)
 })
+
+
+installations:-
+dotenv
+bcryptjs
+
+
+User modals and schema:-
+schema:- Defines the structure of the documents within a collection.
+It specifies the fields, their types and any additional constraints or validations.
+
+
+JWT:- Json web tokens

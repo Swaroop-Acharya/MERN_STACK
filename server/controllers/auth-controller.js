@@ -30,10 +30,44 @@ const register = async (req, res) => {
       password,
     });
 
-    res.status(200).json({ userCreated });
+    res.status(200).json({
+      msg: "Register succesfull",
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString(),
+    });
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { home, register };
+//Login
+
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const userExist = await User.findOne({ email });
+    if (!userExist) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    const user =await userExist.comparePassword(password);
+
+    
+    
+    if(!user){
+      return res.status(400).json({message:"Invalid password"})
+    }
+
+    res.status(200).json({
+      msg:"Login succesfull",
+      token:await userExist.generateToken(),
+      userId:userExist._id.toString()
+    })
+
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { home, register, login };

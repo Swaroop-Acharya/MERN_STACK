@@ -20,6 +20,8 @@ app.listen(PORT,()=>{
 installations:-
 dotenv
 bcryptjs
+jsonwebtoken
+zod
 
 
 User modals and schema:-
@@ -28,3 +30,19 @@ It specifies the fields, their types and any additional constraints or validatio
 
 
 JWT:- Json web tokens
+
+used for transmitting data between parties as a JSON object.
+used for authentication and authorization.
+Three parts:-
+1. Header:- Contains the type of token and the hashing algorithm.
+2. Payload:- Contains the actual data.
+3. Signature:- Contains the encoded data.
+
+Tokens such JWT are not stored in the database.
+Instead they are issued by the server during the authentication process.
+Then it is sent to the client.
+The client will then use the token to authenticate the user.
+
+
+link:- https://jwt.io/
+

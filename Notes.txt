@@ -58,3 +58,9 @@ const errorMiddleware = (err, req, res, next) => {
 module.exports = errorMiddleware;
 
 
+_>Building the contact form 
+ 1) design the contact schema
+ 2) setting up the route for the contact
+ 3)setting up and writing logic for contact by controller
+
+

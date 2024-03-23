@@ -9,14 +9,20 @@ const home = async (req, res) => {
   }
 };
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     console.log(req.body);
     const { username, email, phone, password } = req.body;
 
     const userExist = await User.findOne({ email });
     if (userExist) {
-      return res.status(400).json({ message: "Email already exits" });
+      const status = 400;
+      const message = "Email already exits";
+      const error = {
+        status,
+        message,
+      };
+      return next(error);
     }
 
     //Hashing the password;
@@ -37,37 +43,54 @@ const register = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    next(error);
   }
 };
 
 //Login
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
     const userExist = await User.findOne({ email });
     if (!userExist) {
-      return res.status(400).json({ message: "User not found" });
-    }
-    const user =await userExist.comparePassword(password);
+      // return res.status(400).json({ message: "User not found" });
 
-    
-    
-    if(!user){
-      return res.status(400).json({message:"Invalid password"})
+      const status = 400;
+      const message = "User not found";
+      const error = {
+        status,
+        message,
+      };
+      return next(error);
+    }
+    const user = await userExist.comparePassword(password);
+
+    if (!user) {
+      // return res.status(400).json({message:"Invalid password"})
+      const status = 400;
+      const message = "Invalid password";
+      const error = {
+        status,
+        message,
+      };
+      return next(error);
     }
 
     res.status(200).json({
-      msg:"Login succesfull",
-      token:await userExist.generateToken(),
-      userId:userExist._id.toString()
-    })
-
-
+      msg: "Login succesfull",
+      token: await userExist.generateToken(),
+      userId: userExist._id.toString(),
+    });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    next(error);
   }
 };
+
+
+
+
 
 module.exports = { home, register, login };

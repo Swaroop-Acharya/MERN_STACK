@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../store/auth";
 
 
 export default function Register() {
+  const {storeTokenInLS}=useAuth();
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -33,6 +34,12 @@ export default function Register() {
         body: JSON.stringify(user),
       });
       if(response.ok){
+
+        const res_data =await response.json();
+       
+        //storing the token in client(browser)
+        storeTokenInLS(res_data.token)
+        console.log(res_data)
         setUser({
           username: "",
           email: "",

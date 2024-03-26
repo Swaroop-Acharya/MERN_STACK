@@ -6,6 +6,7 @@ import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Contact from "./pages/Contact";
+import Logout from "./pages/Logout";
 import Navbar from "./components/Navbar";
 import Error from "./pages/Error";
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<Error/>}/>
       </Routes>
     </>

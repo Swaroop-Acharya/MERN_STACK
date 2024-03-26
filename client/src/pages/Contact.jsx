@@ -1,11 +1,23 @@
 import React, { useState } from "react";
-
+import { useAuth } from "../store/auth";
+import { useNavigate } from "react-router-dom";
 export default function Contact() {
   const [contactInfo, setContactInfo] = useState({
     username: "",
     email: "",
     message: "",
   });
+  const [userData, setUserData] = useState(true);
+  const navigate =useNavigate()
+  const { user } = useAuth();
+  if (userData && user) {
+    setContactInfo({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+    setUserData(false);
+  }
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -17,10 +29,25 @@ export default function Contact() {
     console.log(contactInfo);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(contactInfo);
-    // Add your contact form submission logic here
+    const URL = "http://localhost:5000/api/form/contact";
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactInfo),
+      });
+      if (response.ok) {
+        const contact_data = await response.json();
+        console.log(contact_data);
+      }
+      navigate("/")
+    } catch (error) {
+      console.log("Something went wront will contacting" + error);
+    }
   };
 
   return (
@@ -35,7 +62,10 @@ export default function Contact() {
           <h1>Contact Form</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Username
               </label>
               <input
@@ -48,7 +78,10 @@ export default function Contact() {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
@@ -61,7 +94,10 @@ export default function Contact() {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Message
               </label>
               <textarea

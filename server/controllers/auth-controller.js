@@ -89,8 +89,19 @@ const login = async (req, res, next) => {
   }
 };
 
+//to send the user data : User logic
 
+const user = async (req, res, next) => {
+  try {
+    console.log(req.user)
+    const userData = req.user;
+    console.log("Data " + userData);
+    return res.status(200).json({
+      userData
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
-
-
-module.exports = { home, register, login };
+module.exports = { home, register, login, user };

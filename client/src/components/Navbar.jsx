@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 export default function Navbar() {
+  const { isLoggedIn } = useAuth();
   return (
     <header className="bg-gray-800 text-white">
       <div className="container mx-auto flex justify-between items-center p-4">
@@ -32,16 +34,24 @@ export default function Navbar() {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link to="/login" className="hover:text-gray-300">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/register" className="hover:text-gray-300">
-                Sign Up
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link to="/register" className="hover:text-gray-300">
+                    Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login" className="hover:text-gray-300">
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

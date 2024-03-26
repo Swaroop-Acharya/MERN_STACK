@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const authRoute = require("./router/auth-router");
 const contactRoute = require("./router/contact-router");
+const projectRoute = require("./router/project-router");
 const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const cors = require("cors");
@@ -14,13 +15,13 @@ const corsOptions = {
   credentials: true,
 };
 
-
 //Middleware
 //handling the cors error
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
+app.use("/api/data", projectRoute);
 app.use(errorMiddleware);
 
 connectDB().then(() => {

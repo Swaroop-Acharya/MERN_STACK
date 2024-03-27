@@ -13,13 +13,12 @@ const authMiddleware = async (req, res, next) => {
   console.log("token from the auth middleware", jwtToken);
 
   try {
-    
     const isVerfied = jwt.verify(jwtToken, process.env.SECRET_KEY);
     // console.log(isVerfied);
     const userData = await User.findOne({ email: isVerfied.email }).select({
       password: 0,
     });
-  
+
     req.user = userData;
     req.token = token;
     req.userId = userData._id;

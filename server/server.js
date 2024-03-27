@@ -4,6 +4,7 @@ const app = express();
 const authRoute = require("./router/auth-router");
 const contactRoute = require("./router/contact-router");
 const projectRoute = require("./router/project-router");
+const adminRoute=require("./router/admin-router")
 const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const cors = require("cors");
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
 app.use("/api/data", projectRoute);
+app.use("/api/admin", adminRoute);
 app.use(errorMiddleware);
 
 connectDB().then(() => {

@@ -8,6 +8,10 @@ import Register from "./pages/Register";
 import Contact from "./pages/Contact";
 import Logout from "./pages/Logout";
 import Navbar from "./components/Navbar";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminUsers from "./pages/AdminUsers";
+import AdminContacts from "./pages/AdminContacts";
+import AdminProjects from "./pages/AdminProjects";
 import Error from "./pages/Error";
 function App() {
   return (
@@ -22,6 +26,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<Error/>}/>
+        <Route path ="/admin" element={<AdminLayout/>}>
+          <Route path="users" element={<AdminUsers/>}/>
+          <Route path="contacts" element={<AdminContacts/>}/>
+          <Route path="projects" element={<AdminProjects/>}/>
+        </Route>
       </Routes>
     </>
   );

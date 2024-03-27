@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../store/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Contact() {
   const [contactInfo, setContactInfo] = useState({
     username: "",
@@ -8,7 +9,7 @@ export default function Contact() {
     message: "",
   });
   const [userData, setUserData] = useState(true);
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const { user } = useAuth();
   if (userData && user) {
     setContactInfo({
@@ -30,6 +31,7 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e) => {
+    console.log(contactInfo)
     e.preventDefault();
     const URL = "http://localhost:5000/api/form/contact";
     try {
@@ -40,13 +42,18 @@ export default function Contact() {
         },
         body: JSON.stringify(contactInfo),
       });
+      const contact_data = await response.json();
+      toast(contact_data.message)
       if (response.ok) {
-        const contact_data = await response.json();
-        console.log(contact_data);
+       setContactInfo({
+        username: user.username,
+        email: user.email,
+        message: "",
+       })
       }
-      navigate("/")
+      navigate("/");
     } catch (error) {
-      console.log("Something went wront will contacting" + error);
+      toast.error("Something went wront will contacting" + error);
     }
   };
 

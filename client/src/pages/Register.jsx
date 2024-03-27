@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
-
-
+import {toast} from "react-toastify"
 export default function Register() {
-  const {storeTokenInLS}=useAuth();
+  const { storeTokenInLS } = useAuth();
   const [user, setUser] = useState({
     username: "",
     email: "",
     phone: "",
     password: "",
   });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -33,24 +32,27 @@ export default function Register() {
         },
         body: JSON.stringify(user),
       });
-      if(response.ok){
+      const res_data = await response.json();
 
-        const res_data =await response.json();
-       
+      toast(res_data.extraDetails ? res_data.extraDetails : res_data.message)
+      console.log(res_data)
+      if (response.ok) {
         //storing the token in client(browser)
-        storeTokenInLS(res_data.token)
-        console.log(res_data)
+        storeTokenInLS(res_data.token);
+        console.log(res_data);
         setUser({
           username: "",
           email: "",
           phone: "",
           password: "",
-        })
-        navigate("/login")
+        });
+        navigate("/about");
+      }else{
+        console.log("Invalid inputs")
       }
       console.log(response);
     } catch (error) {
-      console.log("registration" + error);
+      toast.error("registration" + error);
     }
   };
   return (

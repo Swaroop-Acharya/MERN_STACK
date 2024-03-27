@@ -37,7 +37,7 @@ const register = async (req, res, next) => {
     });
 
     res.status(200).json({
-      msg: "Register succesfull",
+      message: "Register succesfull",
       token: await userCreated.generateToken(),
       userId: userCreated._id.toString(),
     });
@@ -79,7 +79,7 @@ const login = async (req, res, next) => {
     }
 
     res.status(200).json({
-      msg: "Login succesfull",
+      message: "Login succesfull",
       token: await userExist.generateToken(),
       userId: userExist._id.toString(),
     });

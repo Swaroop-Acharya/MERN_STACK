@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
-
+import {toast} from "react-toastify"
 export default function Login() {
   const {storeTokenInLS}=useAuth();
   const navigate=useNavigate();
@@ -32,8 +32,9 @@ export default function Login() {
         },
         body: JSON.stringify(user),
       });
+      const res_data=await response.json();
+      toast(res_data.extraDetails ? res_data.extraDetails : res_data.message)
       if(response.ok){
-        const res_data=await response.json();
         storeTokenInLS(res_data.token)
         console.log(res_data)
         setUser({
@@ -44,7 +45,7 @@ export default function Login() {
       }
       console.log(response);
     } catch (error) {
-      console.log("Login" + error);
+      toast.error("Login" + error);
     }
   };
 

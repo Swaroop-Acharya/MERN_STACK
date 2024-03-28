@@ -1,11 +1,27 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
-const adminController= require("../controllers/admin-controller")
-const authMiddleware =require('../middlewares/auth-middleware')
+const adminController = require("../controllers/admin-controller");
+const authMiddleware = require("../middlewares/auth-middleware");
+const adminMiddlware = require("../middlewares/admin-middleware");
 
+router
+  .route("/users")
+  .get(authMiddleware, adminMiddlware, adminController.getAllUsers);
+router
+  .route("/contacts")
+  .get(authMiddleware, adminMiddlware, adminController.getAllContacts);
+router;
+router
+  .route("/contacts/delete/:id")
+  .delete(authMiddleware, adminController.deleteContact);
+router
 
-
-router.route('/users').get(authMiddleware,adminController.getAllUsers)
-router.route('/contacts').get(authMiddleware,adminController.getAllContacts)
-
+  .route("/users/:id")
+  .get(authMiddleware, adminMiddlware, adminController.getUserById);
+router
+  .route("/users/delete/:id")
+  .delete(authMiddleware, adminController.deleteUser);
+router
+  .route("/users/update/:id")
+  .patch(authMiddleware, adminMiddlware, adminController.updateUserById);
 module.exports = router;

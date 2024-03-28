@@ -12,7 +12,7 @@ const PORT = 5000;
 
 const corsOptions = {
   origin: "http://localhost:5173",
-  methods: "GET,POST,PUT,DELETE,PATH,HEAD",
+  methods: "GET,POST,PUT,DELETE,PATH,HEAD,PATCH",
   credentials: true,
 };
 

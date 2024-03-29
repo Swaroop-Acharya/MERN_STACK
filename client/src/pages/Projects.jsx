@@ -38,7 +38,7 @@ export default function Projects() {
             <div className="mb-4">
               <strong>Tech Stack:</strong>
               <ul className="list-disc list-inside">
-                {project.techstack.map((tech, index) => (
+                {project.techStack.map((tech, index) => (
                   <li key={index}>{tech}</li>
                 ))}
               </ul>

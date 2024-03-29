@@ -13,6 +13,8 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminContacts from "./pages/AdminContacts";
 import AdminProjects from "./pages/AdminProjects";
 import AdminUpdate from "./pages/AdminUpdate";
+import AddProjects from "./pages/AddProjects";
+import AdminProjectUpdate from "./pages/AdminProjectUpdate";
 import Error from "./pages/Error";
 function App() {
   return (
@@ -31,7 +33,9 @@ function App() {
           <Route path="users" element={<AdminUsers/>}/>
           <Route path="contacts" element={<AdminContacts/>}/>
           <Route path="projects" element={<AdminProjects/>}/>
+          <Route path="projects/add" element={<AddProjects/>}/>
           <Route path="users/:id/edit" element={<AdminUpdate/>} />
+          <Route path="projects/:id/edit" element={<AdminProjectUpdate/>} />
         </Route>
       </Routes>
     </>

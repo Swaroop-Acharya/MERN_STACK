@@ -26,7 +26,7 @@ export default function AdminUpdate() {
       
       setUserData(data.message);
     } catch (error) {
-      console.log("Something went wrong while deleting the user", error);
+      console.log("Something went wrong while fetching the single user", error);
     }
   };
 

@@ -15,7 +15,6 @@ router
   .route("/contacts/delete/:id")
   .delete(authMiddleware, adminController.deleteContact);
 router
-
   .route("/users/:id")
   .get(authMiddleware, adminMiddlware, adminController.getUserById);
 router
@@ -24,4 +23,24 @@ router
 router
   .route("/users/update/:id")
   .patch(authMiddleware, adminMiddlware, adminController.updateUserById);
+
+router
+  .route("/projects")
+  .get(authMiddleware, adminMiddlware, adminController.getAdminProjects);
+
+router
+  .route("/projects/add")
+  .post(authMiddleware, adminMiddlware, adminController.addProject);
+
+router
+  .route("/projects/delete/:id")
+  .delete(authMiddleware, adminMiddlware, adminController.deleteProject);
+router
+  .route("/projects/:id")
+  .get(authMiddleware, adminMiddlware, adminController.getProjectById);
+
+router
+  .route("/projects/update/:id")
+  .patch(authMiddleware, adminMiddlware, adminController.updateProjectById);
+
 module.exports = router;

@@ -22,9 +22,9 @@ export default function AdminLayout() {
         <ul className="flex flex-col">
           <li className="mb-2">
             <Link
-              to="/admin"
+              to="/admin/home"
               className={`text-gray-800 font-semibold hover:text-gray-900 ${
-                location.pathname === "/admin" && "bg-gray-300 pr-10"
+                location.pathname === "/admin/home" && "bg-gray-300 pr-10"
               }`}
             >
               Home
@@ -63,7 +63,7 @@ export default function AdminLayout() {
         </ul>
         {/* Optional: Add footer or additional content here */}
       </nav>
-      
+
       <div className="flex-1 justify-center items-center p-4 h-[90vh]  bg-[#222831]">
         <Outlet />
       </div>

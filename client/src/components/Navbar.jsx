@@ -5,15 +5,15 @@ import { useAuth } from "../store/auth";
 export default function Navbar() {
   const { isLoggedIn } = useAuth();
   return (
-    <header className="bg-gray-800 text-white">
-      <div className="container mx-auto flex justify-between items-center p-4">
+    <header className="text-white mt-3">
+      <div className="container flex justify-between items-center  p-4">
         <div>
-          <Link to="/" className="text-xl font-bold">
+          <Link to="/" className="text-2xl ">
             Swaroop
           </Link>
         </div>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="flex text-2xl space-x-4">
             <li>
               <Link to="/" className="hover:text-gray-300">
                 Home

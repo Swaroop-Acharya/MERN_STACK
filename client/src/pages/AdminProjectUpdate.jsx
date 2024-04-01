@@ -49,15 +49,15 @@ const AdminProjectUpdate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(project)
-      // const techStackArray = project.techStack
-      //   .split(",")
-      //   .map((tech) => tech.trim());
-
-      // const modifiedObject = {
-      //   ...project,
-      //   techStack: techStackArray,
-      // };
+      const techStackArray = project.techStack
+      .split(",")
+      .map((tech) => tech.trim());
+      
+      const modifiedObject = {
+        ...project,
+        techStack: techStackArray,
+      };
+      console.log(modifiedObject)
       const response = await fetch(
         `http://localhost:5000/api/admin/projects/update/${params.id}`,
         {
@@ -66,7 +66,7 @@ const AdminProjectUpdate = () => {
             Authorization: autherizationToken,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(project),
+          body: JSON.stringify(modifiedObject),
         }
       );
 

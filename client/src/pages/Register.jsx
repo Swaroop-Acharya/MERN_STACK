@@ -56,24 +56,19 @@ export default function Register() {
     }
   };
   return (
-    <main className="flex justify-center items-center">
-      <section className="flex-1 p-4">
-        <div>
-          <h1>Register</h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod,
-            enim.
-          </p>
+    <main className="flex mt-14 justify-center items-center">
+      <section className="flex gap-20 p-4">
+      <div className="text-white mt-16 w-2/5">
+          <h1 className="text-2xl font-semibold">Hello there</h1>
+          <p className="text-xl ">Register send message on the go</p>
         </div>
-      </section>
-      <section className="flex-1 p-4">
-        <div>
-          <h1>Registration</h1>
+        <div className="w-3/5">
+        <h1 className="text-3xl font-bold text-white mb-3">Registration</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
                 htmlFor="username"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Username
               </label>
@@ -89,7 +84,7 @@ export default function Register() {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Email
               </label>
@@ -105,7 +100,7 @@ export default function Register() {
             <div className="mb-4">
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Phone
               </label>
@@ -121,7 +116,7 @@ export default function Register() {
             <div className="mb-4">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Password
               </label>
@@ -136,7 +131,7 @@ export default function Register() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="border text-white relative inline-flex items-center justify-start  px-6 py-3 overflow-hidden font-bold rounded-full group hover:bg-white hover:text-blue-500"
             >
               Register
             </button>

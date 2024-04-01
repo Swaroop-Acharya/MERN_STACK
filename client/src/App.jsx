@@ -14,6 +14,7 @@ import AdminContacts from "./pages/AdminContacts";
 import AdminProjects from "./pages/AdminProjects";
 import AdminUpdate from "./pages/AdminUpdate";
 import AddProjects from "./pages/AddProjects";
+import AdminHome from "./pages/AdminHome";
 import AdminProjectUpdate from "./pages/AdminProjectUpdate";
 import Error from "./pages/Error";
 function App() {
@@ -28,14 +29,15 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="*" element={<Error/>}/>
-        <Route path ="/admin" element={<AdminLayout/>}>
-          <Route path="users" element={<AdminUsers/>}/>
-          <Route path="contacts" element={<AdminContacts/>}/>
-          <Route path="projects" element={<AdminProjects/>}/>
-          <Route path="projects/add" element={<AddProjects/>}/>
-          <Route path="users/:id/edit" element={<AdminUpdate/>} />
-          <Route path="projects/:id/edit" element={<AdminProjectUpdate/>} />
+        <Route path="*" element={<Error />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="home" element={<AdminHome />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="contacts" element={<AdminContacts />} />
+          <Route path="projects" element={<AdminProjects />} />
+          <Route path="projects/add" element={<AddProjects />} />
+          <Route path="users/:id/edit" element={<AdminUpdate />} />
+          <Route path="projects/:id/edit" element={<AdminProjectUpdate />} />
         </Route>
       </Routes>
     </>

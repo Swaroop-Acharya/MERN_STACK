@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 export default function Login() {
-  const {storeTokenInLS}=useAuth();
-  const navigate=useNavigate();
+  const { storeTokenInLS } = useAuth();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -17,10 +17,9 @@ export default function Login() {
       ...user,
       [name]: value,
     });
-   
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
     // Add your login logic here
@@ -32,16 +31,16 @@ export default function Login() {
         },
         body: JSON.stringify(user),
       });
-      const res_data=await response.json();
-      toast(res_data.extraDetails ? res_data.extraDetails : res_data.message)
-      if(response.ok){
-        storeTokenInLS(res_data.token)
-        console.log(res_data)
+      const res_data = await response.json();
+      toast(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+      if (response.ok) {
+        storeTokenInLS(res_data.token);
+        console.log(res_data);
         setUser({
-          username:"",
-          password:"",
-        })
-        navigate("/")
+          username: "",
+          password: "",
+        });
+        navigate("/");
       }
       console.log(response);
     } catch (error) {
@@ -50,18 +49,20 @@ export default function Login() {
   };
 
   return (
-    <main className="flex justify-center items-center">
-      <section className="flex-1 p-4">
-        <div>
-          <h1>Login</h1>
+    <main className="flex justify-center mt-20 items-center">
+      <section className="flex  gap-10 p-4">
+        <div className="text-white mt-16 w-2/5">
+          <h1 className="text-2xl font-semibold">Hello there</h1>
+          <p className="text-xl ">Login send message on the go</p>
         </div>
-      </section>
-      <section className="flex-1 p-4">
-        <div>
-          <h1>Login Form</h1>
+        <div className="w-3/5">
+          <h1 className="text-3xl font-bold text-white mb-3">Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-white"
+              >
                 Email
               </label>
               <input
@@ -74,7 +75,10 @@ export default function Login() {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-white"
+              >
                 Password
               </label>
               <input
@@ -88,7 +92,7 @@ export default function Login() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="border text-white relative inline-flex items-center justify-start  px-6 py-3 overflow-hidden font-bold rounded-full group hover:bg-white hover:text-blue-500"
             >
               Login
             </button>

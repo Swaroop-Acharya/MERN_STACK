@@ -31,7 +31,7 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(contactInfo)
+    console.log(contactInfo);
     e.preventDefault();
     const URL = "http://localhost:5000/api/form/contact";
     try {
@@ -43,13 +43,13 @@ export default function Contact() {
         body: JSON.stringify(contactInfo),
       });
       const contact_data = await response.json();
-      toast(contact_data.message)
+      toast(contact_data.message);
       if (response.ok) {
-       setContactInfo({
-        username: user.username,
-        email: user.email,
-        message: "",
-       })
+        setContactInfo({
+          username: user.username,
+          email: user.email,
+          message: "",
+        });
       }
       navigate("/");
     } catch (error) {
@@ -58,20 +58,19 @@ export default function Contact() {
   };
 
   return (
-    <main className="flex justify-center items-center">
-      <section className="flex-1 p-4">
-        <div>
-          <h1>Contact Us</h1>
+    <main className="flex justify-center mt-14 items-center">
+      <section className="flex gap-10 p-4">
+        <div className="text-white mt-16 w-2/5">
+          <h1 className="text-2xl font-semibold">Hello there</h1>
+          <p className="text-xl ">Get in touch with me for project colaboration or oppertunities</p>
         </div>
-      </section>
-      <section className="flex-1 p-4">
-        <div>
-          <h1>Contact Form</h1>
-          <form onSubmit={handleSubmit}>
+        <div className="w-3/5">
+          <h1 className="text-3xl font-bold text-white">Contact Me</h1>
+          <form className="mt-5" onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
                 htmlFor="username"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Username
               </label>
@@ -87,7 +86,7 @@ export default function Contact() {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Email
               </label>
@@ -103,7 +102,7 @@ export default function Contact() {
             <div className="mb-4">
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Message
               </label>
@@ -117,7 +116,7 @@ export default function Contact() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="border text-white relative inline-flex items-center justify-start  px-6 py-3 overflow-hidden font-bold rounded-full group hover:bg-white hover:text-blue-500"
             >
               Submit
             </button>

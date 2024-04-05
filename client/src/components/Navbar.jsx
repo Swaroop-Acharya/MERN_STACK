@@ -31,7 +31,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {user.admin ? (
+            {user.isAdmin ? (
               <li>
                 <Link to="/admin" className="hover:text-gray-300">
                   Admin

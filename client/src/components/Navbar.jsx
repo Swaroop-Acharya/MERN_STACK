@@ -33,7 +33,7 @@ export default function Navbar() {
 
             {user.isAdmin ? (
               <li>
-                <Link to="/admin" className="hover:text-gray-300">
+                <Link to="/admin/home" className="hover:text-gray-300">
                   Admin
                 </Link>
               </li>

@@ -26,7 +26,7 @@ const AdminProjectUpdate = () => {
   const getSingleProject = async () => {
     try {
       console.log(params.id);
-      const URL = `http://localhost:5000/api/admin/projects/${params.id}`;
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/projects/${params.id}`;
       const response = await fetch(URL, {
         method: "GET",
         headers: {
@@ -59,7 +59,7 @@ const AdminProjectUpdate = () => {
       };
       console.log(modifiedObject)
       const response = await fetch(
-        `http://localhost:5000/api/admin/projects/update/${params.id}`,
+        `https://mern-stack-server-nine.vercel.app/api/admin/projects/update/${params.id}`,
         {
           method: "PATCH",
           headers: {

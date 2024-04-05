@@ -6,7 +6,7 @@ export default function AdminContacts() {
   const { autherizationToken } = useAuth();
   const getAllContacts = async () => {
     try {
-      const URL = "http://localhost:5000/api/admin/contacts";
+      const URL = "https://mern-stack-server-nine.vercel.app/api/admin/contacts";
       const response = await fetch(URL, {
         method: "GET",
         headers: {
@@ -35,7 +35,7 @@ export default function AdminContacts() {
 
   const handleDeleteContact = async (id) => {
     try {
-      const URL = `http://localhost:5000/api/admin/contacts/delete/${id}`;
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/contacts/delete/${id}`;
       const response = await fetch(URL, {
         method: "DELETE",
         headers: {

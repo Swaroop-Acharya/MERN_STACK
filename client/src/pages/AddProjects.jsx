@@ -33,7 +33,7 @@ const AddProjectForm = () => {
         techStack: techStackArray,
       };
       console.log(modifiedObject);
-      const URL = `http://localhost:5000/api/admin/projects/add`;
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/projects/add`;
       const response = await fetch(URL, {
         method: "POST",
         headers: {

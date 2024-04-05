@@ -33,7 +33,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     console.log(contactInfo);
     e.preventDefault();
-    const URL = "http://localhost:5000/api/form/contact";
+    const URL = `https://mern-stack-server-nine.vercel.app/api/form/contact`;
     try {
       const response = await fetch(URL, {
         method: "POST",

@@ -11,7 +11,7 @@ const cors = require("cors");
 const PORT = 5000;
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://swaroop-mern-portfolio.vercel.app",
   methods: "GET,POST,PUT,DELETE,PATH,HEAD,PATCH",
   credentials: true,
 };

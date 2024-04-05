@@ -9,7 +9,7 @@ export default function AdminHome() {
 
   const getAllProjects = async () => {
     try {
-      const URL = `http://localhost:5000/api/admin/projects`;
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/projects`;
       const response = await fetch(URL, {
         method: "GET",
         headers: {
@@ -27,7 +27,7 @@ export default function AdminHome() {
 
   const getAllUsers = async () => {
     try {
-      const URL = "http://localhost:5000/api/admin/users";
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/users`;
       const response = await fetch(URL, {
         method: "GET",
         headers: {
@@ -48,7 +48,7 @@ export default function AdminHome() {
 
   const getAllContacts = async () => {
     try {
-      const URL = "http://localhost:5000/api/admin/contacts";
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/contacts`;
       const response = await fetch(URL, {
         method: "GET",
         headers: {

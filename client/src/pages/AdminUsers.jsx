@@ -9,7 +9,7 @@ export default function AdminUsers() {
 
   const fetchAllUsers = async () => {
     try {
-      const URL = "http://localhost:5000/api/admin/users";
+      const URL = "https://mern-stack-server-nine.vercel.app/api/admin/users";
       const response = await fetch(URL, {
         method: "GET",
         headers: {
@@ -30,7 +30,7 @@ export default function AdminUsers() {
 
   const deleteUser = async (userId) => {
     try {
-      const URL = `http://localhost:5000/api/admin/users/delete/${userId}`;
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/users/delete/${userId}`;
       const response = await fetch(URL, {
         method: "DELETE",
         headers: {

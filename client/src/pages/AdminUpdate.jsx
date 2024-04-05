@@ -14,7 +14,7 @@ export default function AdminUpdate() {
   const params = useParams();
   const getSingleUser = async () => {
     try {
-      const URL = `http://localhost:5000/api/admin/users/${params.id}`;
+      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/users/${params.id}`;
       const response = await fetch(URL, {
         method: "GET",
         headers: {
@@ -47,7 +47,7 @@ export default function AdminUpdate() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        `https://mern-stack-server-nine.vercel.app/api/admin/users/update/${params.id}`,
         {
           method: "PATCH",
           headers: {

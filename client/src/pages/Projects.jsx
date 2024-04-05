@@ -5,7 +5,7 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const fetchData = async () => {
     try {
-      const URL = "http://localhost:5000/api/data/projects";
+      const URL = `https://mern-stack-server-nine.vercel.app/api/data/projects`;
       const response = await fetch(URL, {
         method: "GET",
         headers: {

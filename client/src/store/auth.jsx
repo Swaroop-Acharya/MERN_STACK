@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
   const userAuthentication = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:5000/api/auth/user", {
+      const response = await fetch(`https://mern-stack-server-nine.vercel.app/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: autherizationToken,

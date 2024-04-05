@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../store/auth";
 
 export default function Navbar() {
+  const { user } = useAuth();
   const { isLoggedIn } = useAuth();
   return (
     <header className="text-white mt-3">
@@ -29,11 +30,21 @@ export default function Navbar() {
                 Projects
               </Link>
             </li>
-            <li>
-              <Link to="/contact" className="hover:text-gray-300">
-                Contact
-              </Link>
-            </li>
+
+            {user.admin ? (
+              <li>
+                <Link to="/admin" className="hover:text-gray-300">
+                  Admin
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/contact" className="hover:text-gray-300">
+                  Contact
+                </Link>
+              </li>
+            )}
+
             {isLoggedIn ? (
               <li>
                 <Link to="/logout">Logout</Link>

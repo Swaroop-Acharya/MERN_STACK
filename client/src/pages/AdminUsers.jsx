@@ -50,7 +50,7 @@ export default function AdminUsers() {
 
   useEffect(() => {
     fetchAllUsers();
-  }, []);
+  }, [users]);
 
   return (
     <div className="overflow-hidden text-white">

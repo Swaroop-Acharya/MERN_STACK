@@ -1,94 +1,74 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from '../store/auth';
+import { useAuth } from "../store/auth";
 
 export default function AdminHome() {
   const { autherizationToken } = useAuth();
-  const [userCount, setUserCount] = useState(0);
-  const [contactsCount, setContactsCount] = useState(0);
-  const [projectsCount, setProjectsCount] = useState(0);
+  const [counts, setCounts] = useState({
+    userCount: 0,
+    contactsCount: 0,
+    projectsCount: 0,
+  });
 
-  const getAllProjects = async () => {
+  const fetchData = async () => {
     try {
-      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/projects`;
-      const response = await fetch(URL, {
-        method: "GET",
-        headers: {
-          Authorization: autherizationToken,
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setProjectsCount(data.length);
-      }
-    } catch (error) {
-      console.log("Something went wrong while fetching projects!!");
-    }
-  };
+      const [usersResponse, contactsResponse, projectsResponse] =
+        await Promise.all([
+          fetch(`https://mern-stack-server-nine.vercel.app/api/admin/users`, {
+            method: "GET",
+            headers: { Authorization: autherizationToken },
+          }),
+          fetch(
+            `https://mern-stack-server-nine.vercel.app/api/admin/contacts`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: autherizationToken,
+              },
+            }
+          ),
+          fetch(
+            `https://mern-stack-server-nine.vercel.app/api/admin/projects`,
+            { method: "GET", headers: { Authorization: autherizationToken } }
+          ),
+        ]);
 
-  const getAllUsers = async () => {
-    try {
-      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/users`;
-      const response = await fetch(URL, {
-        method: "GET",
-        headers: {
-          Authorization: autherizationToken,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUserCount(data.length);
+      if (usersResponse.ok && contactsResponse.ok && projectsResponse.ok) {
+        const [usersData, contactsData, projectsData] = await Promise.all([
+          usersResponse.json(),
+          contactsResponse.json(),
+          projectsResponse.json(),
+        ]);
+        setCounts({
+          userCount: usersData.length,
+          contactsCount: contactsData.length,
+          projectsCount: projectsData.length,
+        });
       } else {
-        console.log("Something went wrong while fetching");
+        console.log("Something went wrong while fetching data");
       }
     } catch (error) {
-      console.log("Something went wrong while fetching users", error);
-    }
-  };
-
-  const getAllContacts = async () => {
-    try {
-      const URL = `https://mern-stack-server-nine.vercel.app/api/admin/contacts`;
-      const response = await fetch(URL, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: autherizationToken,
-        },
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setContactsCount(data.length);
-      } else {
-        console.log("Something went wrong while fetching contacts for admin");
-      }
-    } catch (error) {
-      console.log(
-        "Something went wrong while fetching contacts for admin",
-        error
-      );
+      console.log("Something went wrong while fetching data", error);
     }
   };
 
   useEffect(() => {
-    getAllProjects();
-    getAllContacts();
-    getAllUsers();
+    fetchData();
   }, []);
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
       <div className="p-4 bg-[#31363F] text-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Projects </h2>
-        <p className="text-3xl font-bold">{projectsCount}</p>
+        <p className="text-3xl font-bold">{counts.projectsCount}</p>
       </div>
       <div className="p-4 bg-[#31363F] text-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Users </h2>
-        <p className="text-3xl font-bold">{userCount}</p>
+        <p className="text-3xl font-bold">{counts.userCount}</p>
       </div>
-      <div className="p-4 bg-[#31363F] text-white  rounded-lg shadow-md">
+      <div className="p-4 bg-[#31363F] text-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Contacts </h2>
-        <p className="text-3xl font-bold">{contactsCount}</p>
+        <p className="text-3xl font-bold">{counts.contactsCount}</p>
       </div>
     </div>
   );

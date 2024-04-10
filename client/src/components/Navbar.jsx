@@ -30,21 +30,18 @@ export default function Navbar() {
                 Projects
               </Link>
             </li>
-
-            {user.isAdmin ? (
+            <li>
+              <Link to="/contact" className="hover:text-gray-300">
+                Contact
+              </Link>
+            </li>
+            {user.isAdmin && (
               <li>
                 <Link to="/admin/home" className="hover:text-gray-300">
                   Admin
                 </Link>
               </li>
-            ) : (
-              <li>
-                <Link to="/contact" className="hover:text-gray-300">
-                  Contact
-                </Link>
-              </li>
             )}
-
             {isLoggedIn ? (
               <li>
                 <Link to="/logout">Logout</Link>

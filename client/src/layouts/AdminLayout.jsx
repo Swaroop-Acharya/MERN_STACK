@@ -61,7 +61,6 @@ export default function AdminLayout() {
             </Link>
           </li>
         </ul>
-        {/* Optional: Add footer or additional content here */}
       </nav>
 
       <div className="flex-1 justify-center items-center p-4 h-[90vh]  bg-[#222831]">

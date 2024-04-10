@@ -1,60 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../store/auth";
+import { useAuth } from '../store/auth';
 
 export default function AdminHome() {
   const { autherizationToken } = useAuth();
-  const [counts, setCounts] = useState({
-    userCount: 0,
-    contactsCount: 0,
-    projectsCount: 0,
-  });
-
-  const fetchData = async () => {
-    try {
-      const [usersResponse, contactsResponse, projectsResponse] =
-        await Promise.all([
-          fetch(`https://mern-stack-server-nine.vercel.app/api/admin/users`, {
-            method: "GET",
-            headers: { Authorization: autherizationToken },
-          }),
-          fetch(
-            `https://mern-stack-server-nine.vercel.app/api/admin/contacts`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: autherizationToken,
-              },
-            }
-          ),
-          fetch(
-            `https://mern-stack-server-nine.vercel.app/api/admin/projects`,
-            { method: "GET", headers: { Authorization: autherizationToken } }
-          ),
-        ]);
-
-      if (usersResponse.ok && contactsResponse.ok && projectsResponse.ok) {
-        const [usersData, contactsData, projectsData] = await Promise.all([
-          usersResponse.json(),
-          contactsResponse.json(),
-          projectsResponse.json(),
-        ]);
-        setCounts({
-          userCount: usersData.length,
-          contactsCount: contactsData.length,
-          projectsCount: projectsData.length,
-        });
-      } else {
-        console.log("Something went wrong while fetching data");
-      }
-    } catch (error) {
-      console.log("Something went wrong while fetching data", error);
-    }
-  };
+  const [counts, setCounts] = useState({ userCount: 0, contactsCount: 0, projectsCount: 0 });
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [usersResponse, contactsResponse, projectsResponse] = await Promise.all([
+          fetch(`https://mern-stack-server-nine.vercel.app/api/admin/users`, { method: "GET", headers: { Authorization: autherizationToken } }),
+          fetch(`https://mern-stack-server-nine.vercel.app/api/admin/contacts`, { method: "GET", headers: { "Content-Type": "application/json", Authorization: autherizationToken } }),
+          fetch(`https://mern-stack-server-nine.vercel.app/api/admin/projects`, { method: "GET", headers: { Authorization: autherizationToken } })
+        ]);
+
+        if (usersResponse.ok && contactsResponse.ok && projectsResponse.ok) {
+          const [usersData, contactsData, projectsData] = await Promise.all([
+            usersResponse.json(),
+            contactsResponse.json(),
+            projectsResponse.json()
+          ]);
+          setCounts({
+            userCount: usersData.length,
+            contactsCount: contactsData.length,
+            projectsCount: projectsData.length
+          });
+        } else {
+          console.log("Something went wrong while fetching data");
+        }
+      } catch (error) {
+        console.log("Something went wrong while fetching data", error);
+      }
+    };
+
     fetchData();
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once when the component mounts
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">

@@ -46,7 +46,7 @@ export default function AdminHome() {
       <div className="p-4 bg-[#31363F] text-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Projects </h2>
         {counts.projectsCount.isLoading ? (
-          <ReactLoading type={"cylon"} color={"white"} height={30} width={30} />
+          <ReactLoading type={"cylon"} color={"white"} height={36} width={35} />
         ) : (
           <p className="text-3xl font-bold">{counts.projectsCount.value}</p>
         )}
@@ -54,7 +54,7 @@ export default function AdminHome() {
       <div className="p-4 bg-[#31363F] text-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Users </h2>
         {counts.userCount.isLoading ? (
-          <ReactLoading type={"cylon"} color={"white"} height={30} width={30} />
+          <ReactLoading type={"cylon"} color={"white"} height={36} width={35} />
         ) : (
           <p className="text-3xl font-bold">{counts.userCount.value}</p>
         )}
@@ -62,7 +62,7 @@ export default function AdminHome() {
       <div className="p-4 bg-[#31363F] text-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Contacts </h2>
         {counts.contactsCount.isLoading ? (
-          <ReactLoading type={"cylon"} color={"white"} height={30} width={30} />
+          <ReactLoading type={"cylon"} color={"white"} height={36} width={35} />
         ) : (
           <p className="text-3xl font-bold">{counts.contactsCount.value}</p>
         )}

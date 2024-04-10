@@ -2,16 +2,26 @@ import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { useNavigate } from "react-router-dom";
-import ReactLoading from 'react-loading';
+import ReactLoading from "react-loading";
+
 export default function AdminLayout() {
-  const { user } = useAuth();
-  const { isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   if (isLoading) {
-    return  <ReactLoading type={"bars"} color={"white"} height={'20%'} width={'20%'} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <ReactLoading
+          type={"bars"}
+          color={"white"}
+          height={"20%"}
+          width={"20%"}
+        />
+      </div>
+    );
   }
+
   if (!user.isAdmin) {
     navigate("/");
   }

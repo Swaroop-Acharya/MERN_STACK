@@ -33,8 +33,8 @@ export default function Projects() {
   // Display loading indicator while fetching data
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[80vh]">
-        <ReactLoading type={"bars"} color={"white"} height={50} width={50} />
+      <div className="flex justify-center items-center h-[75vh]">
+        <ReactLoading type={"bars"} color={"white"} height={60} width={60} />
       </div>
     );
   }

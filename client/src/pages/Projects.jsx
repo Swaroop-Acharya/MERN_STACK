@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { FaGithub } from "react-icons/fa";
+import ReactLoading from "react-loading";
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // State to track loading status
+
   const fetchData = async () => {
     try {
       const URL = `https://mern-stack-server-nine.vercel.app/api/data/projects`;
@@ -14,8 +18,8 @@ export default function Projects() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         setProjects(data);
+        setIsLoading(false); // Set loading status to false after fetching data
       }
     } catch (error) {
       console.log("Unable to fetch projects" + error);
@@ -25,6 +29,15 @@ export default function Projects() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // Display loading indicator while fetching data
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ReactLoading type={"spin"} color={"#000"} height={50} width={50} />
+      </div>
+    );
+  }
 
   return (
     <section className="container mx-auto mt-8">

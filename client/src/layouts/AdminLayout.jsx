@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { useNavigate } from "react-router-dom";
-
+import ReactLoading from 'react-loading';
 export default function AdminLayout() {
   const { user } = useAuth();
   const { isLoading } = useAuth();
@@ -10,7 +10,7 @@ export default function AdminLayout() {
   const location = useLocation();
 
   if (isLoading) {
-    return <h1>Loading....</h1>;
+    return  <ReactLoading type={"bars"} color={"white"} height={'20%'} width={'20%'} />;
   }
   if (!user.isAdmin) {
     navigate("/");

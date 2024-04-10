@@ -11,7 +11,7 @@ export default function AdminLayout() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center">
         <ReactLoading
           type={"bars"}
           color={"white"}

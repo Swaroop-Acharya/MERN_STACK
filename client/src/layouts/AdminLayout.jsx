@@ -9,17 +9,17 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center h-[75vh]">
-  //       <ReactLoading type={"bars"} color={"white"} height={60} width={60} />
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[75vh]">
+        <ReactLoading type={"bars"} color={"white"} height={60} width={60} />
+      </div>
+    );
+  }
 
-  // if (!user.isAdmin) {
-  //   navigate("/");
-  // }
+  if (!user.isAdmin) {
+    navigate("/");
+  }
 
   return (
     <div className="flex flex-col h-[89vh]">

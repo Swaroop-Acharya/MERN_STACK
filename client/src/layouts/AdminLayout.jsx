@@ -15,8 +15,8 @@ export default function AdminLayout() {
         <ReactLoading
           type={"bars"}
           color={"white"}
-          height={"20%"}
-          width={"20%"}
+          height={"10%"}
+          width={"10%"}
         />
       </div>
     );

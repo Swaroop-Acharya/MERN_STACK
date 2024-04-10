@@ -61,7 +61,7 @@ export default function AdminUsers() {
     <div className="overflow-hidden text-white">
       <h1 className="text-3xl p-3">Users List</h1>
       {isLoading ? ( // Display loading indicator while fetching or deleting
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-80">
           <ReactLoading type={"spin"} color={"white"} height={50} width={50} />
         </div>
       ) : (
